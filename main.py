@@ -38,8 +38,8 @@ letra = letra()
 
 letraEscolhida = input('---> ' )
 
-
 resultado = aferir(letra, letraEscolhida)
+
 engine.say(resultado)
 engine.runAndWait()
     
