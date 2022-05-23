@@ -1,20 +1,23 @@
 import random
 import pyttsx3
 
-alfabeto = 'abcdefghijklmnoprstuvwxyz'
+alphabet = 'abcdefghijklmnoprstuvwxyz'
 
-def say(texto):
+def say(text):
     engine = pyttsx3.init()
     engine.setProperty('voice', "brazil")
     engine.setProperty('rate', 190)
-    engine.say(texto)
+    engine.say(text)
     engine.runAndWait()
 
-def letra():
-    letra = random.choice(alfabeto)  
-    return letra
+def salutation(name):
+    return f'Olá {name}! vamos brincar com as letras?'
 
-def aferir(letra, letraEscolhida):
-    if letra == str(letraEscolhida):
-        return 'Parabens Laurinha, Voce acertou!'
+def letter():
+    letter = random.choice(alphabet)  
+    return letter
+
+def gauge(letter, choice, name='Fulano'):
+    if letter == str(choice):
+        return f'Parabens {name}, Acertou Miseravi!'
     return 'Infelizmente você não acertou.'

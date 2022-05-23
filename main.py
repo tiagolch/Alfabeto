@@ -1,22 +1,22 @@
 import letters
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request 
 
 
 app = Flask(__name__)
 
 
-@app.route('/', methods=['GET', 'POST'])
-def index():
+@app.route('/<string:name>', methods=['GET', 'POST'])
+def index(name):
     if request.method == 'POST':
-        letraEscolhida = request.form['choice']
-        letra = request.form['letra']
-        resultado = letters.aferir(letra, letraEscolhida)
-        letters.say(resultado)
-        return render_template('index.html', resultado=resultado)
-    letra = letters.letra()
-    letters.say("Olá Laurinha! vamos brincar com as letras?")
-    letters.say(f'Onde esta a letra {letra}?')
-    return render_template('index.html', letra=letra)
+        choice = request.form['choice']
+        letter = request.form['letter']
+        result = letters.gauge(letter, choice, name)
+        letters.say(result)
+        return render_template('index.html', result=result, name=name)
+    letter = letters.letter()
+    letters.say(letters.salutation(name))
+    letters.say(f'Onde esta a letra {letter}?')
+    return render_template('index.html', letter=letter, name=name)
 
 
 if __name__ == '__main__':

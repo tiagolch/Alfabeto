@@ -10,24 +10,22 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <h1>Laurinha</h1>
+                <h1>Olá {{name}}</h1>
                 <p>
                    <form  method="post">
-                       <div>
-                           <input hidden name='letra' value="{{letra}}">
+                    <div>
+                        {% if result %}
+                              <h1>{{result}}</h1>
+                        {% else %}
+                            <input hidden name='letter' value="{{letter}}">
                             <label for="choice" class="col-md-2">Letra</label>
                             <input type="text" name="choice" id="choice" class="col-md-2">
-                       </div>
-                       <div>
-                           <input type="submit" value="Enviar">
-                       </div>
-                       <div>
-                           {% if resultado %}
-                                 <h1>{{resultado}}</h1>
-                            {% endif %}
-                       </div>
+                            <div>
+                                <input type="submit" value="Enviar">
+                            </div>
+                        {% endif %}
+                    </div>
                    </form>
-
                 </p>
             </div>
         </div>
