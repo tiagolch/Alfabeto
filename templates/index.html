@@ -4,13 +4,13 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <h1>Olá {{name}}</h1>
-                <p>
-                   <form  method="post">
+                <form  method="post">
                     <div>
                         {% if result %}
-                              <h1>{{result}}</h1>
+                            <h1>{{result}}</h1>
                         {% else %}
+                            <h1>Olá {{name}}</h1>
+                            <p>
                             <input hidden name='letter' value="{{letter}}">
                             <label for="choice" class="col-md-2">Letra</label>
                             <input type="text" name="choice" id="choice" class="col-md-2">
@@ -19,8 +19,7 @@
                             </div>
                         {% endif %}
                     </div>
-                   </form>
-                </p>
+                </form>
             </div>
         </div>
     </div>  
