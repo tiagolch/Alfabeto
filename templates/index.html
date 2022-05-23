@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Laurinha</title>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h1>Laurinha</h1>
+                <p>
+                   <form  method="post">
+                       <div>
+                           <input hidden name='letra' value="{{letra}}">
+                            <label for="choice" class="col-md-2">Letra</label>
+                            <input type="text" name="choice" id="choice" class="col-md-2">
+                       </div>
+                       <div>
+                           <input type="submit" value="Enviar">
+                       </div>
+                       <div>
+                           {% if resultado %}
+                                 <h1>{{resultado}}</h1>
+                            {% endif %}
+                       </div>
+                   </form>
+
+                </p>
+            </div>
+        </div>
+    </div>    
+</body>
+</html>

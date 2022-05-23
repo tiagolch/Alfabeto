@@ -1,46 +1,26 @@
-'''
-Algoritmo alfabeto:
-Ao selecionar a opção alfabeto o programa deve informar que ira solicitar algumas 
-letras afim testar o conhecimento do usuario.
-
-1 - O sistema informa uma letra por audio aleatoriamente.
-2 - Espera-se que o usuario digite um caracter seguido de enter para imputar automaticamente.
-3 - O sistema compara o caracter imputado com a letra informada.
-4 - Caso verdadeiro é dado parabens, caso contrário é informado sobre o erro e pede para imputar o
-caracter novamente.
-'''
-
-import random
-import pyttsx3
+import letters
+from flask import Flask, redirect, render_template, request, url_for
 
 
-engine = pyttsx3.init()
-engine.setProperty('rate', 120)
-alfabeto = 'abcdefghijklmnoprstuvwxyz'
-
-def letra():
-    letra = random.choice(alfabeto)
-    engine.say(f'Digite a letra {letra}')
-    print(letra)
-    engine.runAndWait()
-    return letra
-
-def aferir(letra, letraEscolhida):
-    if letra == letraEscolhida:
-        return 'Parabens, Voce acertou!!'
-    return 'Hummm, Infelizmente esta incorreto.'
+app = Flask(__name__)
 
 
-engine.say("Olá, vamos ver se voce acerta algumas letras?")
-engine.say("Lets go")
+@app.route('/', methods=['GET', 'POST'])
+def index():
+    if request.method == 'POST':
+        letraEscolhida = request.form['choice']
+        letra = request.form['letra']
+        resultado = letters.aferir(letra, letraEscolhida)
+        letters.say(resultado)
+        return render_template('index.html', resultado=resultado)
+    letra = letters.letra()
+    letters.say("Olá Laurinha! vamos brincar com as letras?")
+    letters.say(f'Onde esta a letra {letra}?')
+    return render_template('index.html', letra=letra)
 
-letra = letra()
 
-letraEscolhida = input('---> ' )
+if __name__ == '__main__':
+    app.run(debug=True)
 
-resultado = aferir(letra, letraEscolhida)
 
-engine.say(resultado)
-engine.runAndWait()
-    
-print(resultado)
+
