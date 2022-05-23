@@ -18,6 +18,6 @@ def letter():
     return letter
 
 def gauge(letter, choice, name='Fulano'):
-    if letter == str(choice):
+    if letter == (str(choice)).lower():
         return f'Parabens {name}, Acertou Miseravi!'
     return 'Infelizmente você não acertou.'
